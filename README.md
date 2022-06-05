@@ -2,7 +2,7 @@
 ## Laboratory Experiments
 This directory encompasses all those lab exercises which were done for eight weeks during the semester.
 ## Assignment
-This directory contains two sub-folders:
+This directory contains two sub-folders.
 ### Case Study
 The case study directory provides the solution to two case studies of the curriculum (iPremier and University of Virginia)
 ### Hands-on
