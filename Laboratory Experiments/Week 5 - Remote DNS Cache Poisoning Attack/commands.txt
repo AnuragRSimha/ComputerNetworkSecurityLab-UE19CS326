@@ -1,0 +1,35 @@
+cat /etc/bind/named.conf.default-zones
+cat /etc/bind/db.attacker
+cat /etc/bind/named.conf.local
+cat /etc/bind/example.com.db
+
+sudo service bind9 restart
+sudo rndc flush
+sudo rndc dumpdb -cache
+cat /var/cache/bind/cache_dump.db | grep attacker
+
+$TTL 3D
+@	IN	SOA	ns.example.net. admin.example.net. (
+		2008111001
+		8H
+		2H
+		4W
+		1D)
+
+@	IN	NS	ns.dnslabattacker.net.
+@	IN	MX	10 mail.example.net.
+
+www	IN	A	1.1.1.1
+mail	IN	A	1.1.1.2
+*.example.net.	IN	A 1.1.1.100
+
+zone "example.com"{
+        type master;
+        file "/etc/bind/example.com.db";
+};
+
+zone "ns.dnslabattacker.net" {
+        type master;
+        file "/etc/bind/db.attacker";
+};
+
